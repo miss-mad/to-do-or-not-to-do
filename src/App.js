@@ -1,6 +1,14 @@
-import ToDo from "./components/toDo";
+import ToDo from "./components/ToDo";
 
 function App(props) {
+  const taskList = props.tasks.map((task) => (
+    <ToDo
+      id={task.id}
+      name={task.name}
+      completed={task.completed}
+      key={task.id}
+    />
+  ));
   return (
     <div className="todoapp stack-large">
       <h1>To Do or Not To Do</h1>
@@ -44,9 +52,7 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <ToDo name="Eat" completed={true} id="toDo-0" />
-        <ToDo name="Sleep" completed={false} id="toDo-1" />
-        <ToDo name="Repeat" completed={false} id="toDo-2" />
+        {taskList}
       </ul>
     </div>
   );

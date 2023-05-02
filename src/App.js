@@ -44,9 +44,9 @@ function App(props) {
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading"
       >
-        <ToDo name="Eat" />
-        <ToDo name="Sleep" />
-        <ToDo name="Repeat" />
+        <ToDo name="Eat" completed={true} id="toDo-0" />
+        <ToDo name="Sleep" completed={false} id="toDo-1" />
+        <ToDo name="Repeat" completed={false} id="toDo-2" />
       </ul>
     </div>
   );

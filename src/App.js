@@ -23,6 +23,23 @@ function App(props) {
     setTasks([...tasks, newTask]);
   };
 
+  const toggleTaskCompleted = (id) => {
+    console.log(tasks[0]);
+    const updatedTasks = tasks.map((task) => {
+      // if this task id matches that of the edited task id
+      if (id === task.id) {
+        console.log(id);
+        console.log(task.id);
+        // use spread operator to make a new object
+        // the "completed" prop is flipped
+        return { ...task, completed: !task.completed };
+      }
+      return task;
+    });
+    // give new array updatedTasks to the setTasks state
+    setTasks(updatedTasks);
+  };
+
   // map over the data from index.js
   const taskList = tasks.map((task) => (
     <ToDo
@@ -30,8 +47,14 @@ function App(props) {
       name={task.name}
       completed={task.completed}
       key={task.id}
+      toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask={deleteTask}
     />
   ));
+
+  // dynamic heading text in accordance with # of tasks remaining
+  const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
+  const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   return (
     <div className="todoapp stack-large">
@@ -43,7 +66,7 @@ function App(props) {
         <FilterButton />
         <FilterButton />
       </div>
-      <h2 id="list-heading">3 tasks remaining</h2>
+      <h2 id="list-heading">{headingText}</h2>
       <ul
         role="list"
         className="todo-list stack-large stack-exception"

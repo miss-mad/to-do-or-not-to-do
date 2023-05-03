@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import ToDo from "./components/ToDo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 
-function App({ tasks }) {
+function App(props) {
+  const [tasks, setTasks] = useState(props.tasks);
+
   // passing props from child (Form) to parent (App) by creating a function in parent (App) that expects data and passing that function to the child (Form)
   // also called a callback prop (a function as a prop)
-  const addTask = (taskName) => alert(taskName);
+  const addTask = (taskName) => {
+    alert(taskName);
+    const newTask = { id: "id", name: taskName, completed: false };
+    console.log(newTask);
+    // spread operator to add new task to existing tasks array
+    setTasks([...tasks, newTask]);
+  };
 
   // map over the data from index.js
   const taskList = tasks.map((task) => (

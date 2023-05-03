@@ -15,7 +15,6 @@ export default function Form({ addTask }) {
 
   // find and set the value of the new task name in the form input
   const handleInputChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
   return (

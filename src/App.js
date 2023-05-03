@@ -3,6 +3,9 @@ import ToDo from "./components/ToDo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 
+// calling nanoid() gives all children unique ids
+import { nanoid } from "nanoid";
+
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
 
@@ -10,7 +13,11 @@ function App(props) {
   // also called a callback prop (a function as a prop)
   const addTask = (taskName) => {
     alert(taskName);
-    const newTask = { id: "id", name: taskName, completed: false };
+    const newTask = {
+      id: `toDo-${nanoid()}`,
+      name: taskName,
+      completed: false,
+    };
     console.log(newTask);
     // spread operator to add new task to existing tasks array
     setTasks([...tasks, newTask]);

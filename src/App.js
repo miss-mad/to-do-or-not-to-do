@@ -12,7 +12,7 @@ function App(props) {
   // passing props from child (Form) to parent (App) by creating a function in parent (App) that expects data and passing that function to the child (Form)
   // also called a callback prop (a function as a prop)
   const addTask = (taskName) => {
-    alert(taskName);
+    // alert(taskName);
     const newTask = {
       id: `toDo-${nanoid()}`,
       name: taskName,
@@ -40,6 +40,10 @@ function App(props) {
     setTasks(updatedTasks);
   };
 
+  const deleteTask = (id) => {
+    console.log(id);
+  };
+
   // map over the data from index.js
   const taskList = tasks.map((task) => (
     <ToDo
@@ -62,9 +66,9 @@ function App(props) {
       {/* passing the task as prop to the child (Form) so we can obtain the data (new task name) */}
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
+        {/* <FilterButton />
         <FilterButton />
-        <FilterButton />
-        <FilterButton />
+        <FilterButton /> */}
       </div>
       <h2 id="list-heading">{headingText}</h2>
       <ul
